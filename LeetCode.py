@@ -52,8 +52,13 @@ def palindrome_number(x):
     :param x: Any integer number
     :return: True or False
     """
+
+    # Constraints
+
     if x < -2e+31 or x > 2e+31 - 1:
         return None
+
+    # Solution
 
     y = 0
     i = x
