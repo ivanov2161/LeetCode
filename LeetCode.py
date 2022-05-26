@@ -124,8 +124,54 @@ def add_two_numbers(l1, l2):  # Здесь я лоханулся и сделал
     return answer[::-1]
 
 
+def lengthOfLongestSubstring(s):
+    """
+    Difficult - Medium
+    Given a string s, find the length of the longest substring without repeating characters.
+    EXAMPLE: Input: s = "abcabcbb"
+                    Output: 3
+                    Explanation: The answer is "abc", with the length of 3.
+    :param s:
+    :return:
+    """
+
+    # Constraints 0 <= s.length <= 5 * 104
+
+    if len(s) < 0 or len(s) > 5e+4:
+        return None
+
+    if len(s) == 0:
+        return 0
+
+    # Solution
+
+    temp_array = [s[0]]
+    max_length = []
+    count = 0
+    o = 0
+    x = 0
+
+    for y in s:
+        for i in s[o:len(s)]:
+            for j in temp_array:
+                if i == j:
+                    count += 1
+            x += 1
+            if count == 0 and not x - len(temp_array) > 1:
+                temp_array.append(i)
+            count = 0
+        x = 0
+        max_length.append(len(temp_array))
+        o += 1
+        try:
+            temp_array = [s[o]]
+        except:
+            pass
+
+    return max(max_length)
+
+
 two_sum([2, 7, 11, 15], 9)
-
 print(palindrome_number(121))
-
 print(add_two_numbers([3, 4, 5], [2, 4, 5]))
+print(lengthOfLongestSubstring("abcdefghiiiij,-./:;<=>?@[\\]^_`{|}~ abcde abc['"))
