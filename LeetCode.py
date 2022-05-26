@@ -121,7 +121,7 @@ def add_two_numbers(l1, l2):  # Здесь я лоханулся и сделал
     for i in str(numb_one + numb_two):
         answer.append(int(i))
 
-    return answer[::-1]  #
+    return answer[::-1]
 
 
 two_sum([2, 7, 11, 15], 9)
