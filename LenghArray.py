@@ -8,7 +8,7 @@ def lengthOfLongestSubstring(s):
 
         for i, j in enumerate(s):
             if j <= substring[j]: # если в подстроке
-                start = substring [j] + 1 # Окно сдвигается назад
+                start = substring[j] + 1 # Окно сдвигается назад
             else:
                 maxlength = max(maxlength, i - start + 1)
                 substring[j] = i

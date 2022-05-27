@@ -1,3 +1,63 @@
+def romanToInt(s):
+    """
+    Difficult - Easy
+    Convert Roman numerals to arabic numerals
+    :param s:
+    :return: Arabic number
+    """
+
+    # Constraints
+
+    assert 1 <= len(s) <= 15
+
+    # Solution
+
+    answer = 0
+    temp = s
+
+    if temp.count('CM'):
+        answer += temp.count('CM') * 900
+        temp = temp.replace('CM', '')
+    if temp.count('M'):
+        answer += temp.count('M') * 1000
+        temp = temp.replace('M', '')
+    if temp.count('CD'):
+        answer += temp.count('CD') * 400
+        temp = temp.replace('CD', '')
+    if temp.count('D'):
+        answer += temp.count('D') * 500
+        temp = temp.replace('D', '')
+    if temp.count('XC'):
+        answer += temp.count('XC') * 90
+        temp = temp.replace('XC', '')
+    if temp.count('C'):
+        answer += temp.count('C') * 100
+        temp = temp.replace('C', '')
+    if temp.count('XL'):
+        answer += temp.count('XL') * 40
+        temp = temp.replace('XL', '')
+    if temp.count('L'):
+        answer += temp.count('L') * 50
+        temp = temp.replace('L', '')
+    if temp.count('IX'):
+        answer += temp.count('IX') * 9
+        temp = temp.replace('IX', '')
+    if temp.count('X'):
+        answer += temp.count('X') * 10
+        temp = temp.replace('X', '')
+    if temp.count('IV'):
+        answer += temp.count('IV') * 4
+        temp = temp.replace('IV', '')
+    if temp.count('V'):
+        answer += temp.count('V') * 5
+        temp = temp.replace('V', '')
+    if temp.count('I'):
+        answer += temp.count('I') * 1
+        temp = temp.replace('I', '')
+
+    return answer
+
+
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
@@ -63,13 +123,15 @@ class Solution(object):
         int_to_listnode(temp_node, temp_int)
         temp_node = reverse_list(temp_node)
         drop(temp_node)
-
+        print_nodes(temp_node)
         return temp_node
 
 
-l1 = ListNode(2, ListNode(4, ListNode(3)))
-l2 = ListNode(5, ListNode(6, ListNode(4)))
+if __name__ == '__main__':
+    print(romanToInt("MDCCCLXXXIV"))
+    print(romanToInt("M"))
 
-a = Solution()
-a.addTwoNumbers(l1, l2)
-
+    l1 = ListNode(2, ListNode(4, ListNode(3)))
+    l2 = ListNode(5, ListNode(6, ListNode(4)))
+    a = Solution()
+    a.addTwoNumbers(l1, l2)
