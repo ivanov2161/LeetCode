@@ -112,7 +112,7 @@ class Solution(object):
                 append(node, int(i))
             return node
 
-        def drop(node):
+        def drop(node):  # КОСТЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЛЬ
             n = node
             while n.next.next is not None:
                 n = n.next
