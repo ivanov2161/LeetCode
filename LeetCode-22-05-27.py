@@ -1,3 +1,29 @@
+def romanToInt(s):
+    """
+    Difficult - Easy
+    Convert Roman numerals to arabic numerals
+    :param s:
+    :return: Arabic number
+    """
+
+    # Constraints
+
+    assert 1 <= len(s) <= 15
+
+    # Solution
+    answer = 0
+    temp = s
+
+    dictionary = (('CM', 900), ('M', 1000), ('CD', 400), ('D', 500), ('XC', 90), ('C', 100),
+                  ('XL', 40), ('L', 50), ('IX', 9), ('X', 10), ('IV', 4), ('V',  5), ('I', 1))
+
+    for key, value in dictionary:
+        if temp.count(key):
+            answer += temp.count(key) * value
+            temp = temp.replace(key, '')
+    return answer
+
+
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
@@ -28,7 +54,7 @@ class Solution(object):
                 print(node.val, end=' ' if node.next else '\n')
                 node = node.next
 
-        def reverse_list(head, tail=None):  # если это важно, то подглядел я только эту функцию =)
+        def reverse_list(head, tail=None):
             while head:
                 head.next, tail, head = tail, head, head.next
             return tail
@@ -52,24 +78,19 @@ class Solution(object):
                 append(node, int(i))
             return node
 
-        def drop(node):
-            n = node
-            while n.next.next is not None:
-                n = n.next
-            n.next = None
-
         temp_int = node_to_int(reverse_list(l1)) + node_to_int(reverse_list(l2))
         temp_node = ListNode()
         int_to_listnode(temp_node, temp_int)
-        temp_node = reverse_list(temp_node)
-        drop(temp_node)
-
+        temp_node = reverse_list(temp_node.next)
+        print_nodes(temp_node)
         return temp_node
 
 
-l1 = ListNode(2, ListNode(4, ListNode(3)))
-l2 = ListNode(5, ListNode(6, ListNode(4)))
+if __name__ == '__main__':
+    print(romanToInt("MDCCCLXXXIV"))
+    print(romanToInt("M"))
 
-a = Solution()
-a.addTwoNumbers(l1, l2)
-
+    l1 = ListNode(2, ListNode(4, ListNode(3)))
+    l2 = ListNode(5, ListNode(6, ListNode(4)))
+    a = Solution()
+    a.addTwoNumbers(l1, l2)
